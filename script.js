@@ -20,3 +20,19 @@ companies.forEach(c => {
   const row = `<tr><td>${c.name}</td><td>${c.ticker}</td><td>${c.pe}</td></tr>`;
   table.innerHTML += row;
 });
+
+
+async function fetchGreedIndex() {
+  const response = await fetch("https://fear-and-greed-index.p.rapidapi.com/v1/fgi", {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "x-rapidapi-key: ea053d13c0msh0a8e44046cd0debp11f2f1jsnc5cd5e77bbb4",
+      "X-RapidAPI-Host": "fear-and-greed-index.p.rapidapi.com"
+    }
+  });
+
+  const data = await response.json();  
+  document.getElementById("greed-score").textContent = `${data.fgi.now.value} (${data.fgi.now.valueText})`;
+}
+
+fetchGreedIndex();
