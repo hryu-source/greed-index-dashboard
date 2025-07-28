@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Greed Index & Top Companies</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Market Dashboard</h1>
+    <section id="greed-index">
+      <h2>🧠 Greed Index</h2>
+      <p id="greed-score">Loading...</p>
+    </section>
+    <section id="top-companies">
+      <h2>🏢 Top 10 Revenue Companies with Low P/E</h2>
+      <table>
+        <thead>
+          <tr><th>Company</th><th>Ticker</th><th>P/E Ratio</th></tr>
+        </thead>
+        <tbody id="company-table">
+          <!-- Filled by JS -->
+        </tbody>
+      </table>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
