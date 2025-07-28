@@ -1,5 +1,5 @@
 // Static Greed Index (replace with API later)
-document.getElementById("greed-score").textContent = "75 (Extreme Greed)";
+// document.getElementById("greed-score").textContent = "75 (Extreme Greed)";
 
 // Static company data
 const companies = [
