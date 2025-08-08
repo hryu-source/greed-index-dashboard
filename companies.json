@@ -1,0 +1,12 @@
+[
+  {"companyName": "Berkshire Hathaway Inc.", "symbol": "BRK.B", "marketCap": 780000000000, "pe": 12.5},
+  {"companyName": "JPMorgan Chase & Co.", "symbol": "JPM", "marketCap": 470000000000, "pe": 10.4},
+  {"companyName": "Exxon Mobil Corporation", "symbol": "XOM", "marketCap": 420000000000, "pe": 13.1},
+  {"companyName": "Chevron Corporation", "symbol": "CVX", "marketCap": 300000000000, "pe": 9.8},
+  {"companyName": "Bank of America Corporation", "symbol": "BAC", "marketCap": 250000000000, "pe": 9.3},
+  {"companyName": "Toyota Motor Corporation", "symbol": "TM", "marketCap": 230000000000, "pe": 9.4},
+  {"companyName": "Pfizer Inc.", "symbol": "PFE", "marketCap": 220000000000, "pe": 9.1},
+  {"companyName": "Cisco Systems, Inc.", "symbol": "CSCO", "marketCap": 190000000000, "pe": 15.9},
+  {"companyName": "Verizon Communications Inc.", "symbol": "VZ", "marketCap": 170000000000, "pe": 7.2},
+  {"companyName": "Intel Corporation", "symbol": "INTC", "marketCap": 150000000000, "pe": 12.0}
+]

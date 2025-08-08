@@ -13,7 +13,8 @@ async function fetchGreedIndex() {
 // Fetch and display top 10 companies with large market cap and low P/E
 async function fetchTopCompanies() {
   try {
-    const response = await fetch('https://financialmodelingprep.com/api/v3/stock-screener?marketCapMoreThan=100000000000&peLessThan=20&limit=100&apikey=demo');
+    // Use a static dataset to avoid external API rate limits and CORS issues
+    const response = await fetch('companies.json');
     const data = await response.json();
     const top = data.sort((a, b) => b.marketCap - a.marketCap).slice(0, 10);
 
