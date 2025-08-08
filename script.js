@@ -20,7 +20,13 @@ async function fetchTopCompanies() {
     let data;
     try {
       const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('API error');
+      }
       data = await response.json();
+      if (!Array.isArray(data)) {
+        throw new Error('Invalid data');
+      }
     } catch (networkErr) {
       const fallback = await fetch('data/top_companies.json');
       data = await fallback.json();
@@ -53,7 +59,13 @@ async function fetchDividendCompanies() {
     let data;
     try {
       const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('API error');
+      }
       data = await response.json();
+      if (!Array.isArray(data)) {
+        throw new Error('Invalid data');
+      }
     } catch (networkErr) {
       const fallback = await fetch('data/dividend_companies.json');
       data = await fallback.json();
