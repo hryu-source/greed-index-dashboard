@@ -17,8 +17,14 @@ async function fetchTopCompanies() {
     // Use stock-screener to retrieve a manageable list of large-cap stocks
     const url =
       'https://financialmodelingprep.com/api/v3/stock-screener?marketCapMoreThan=100000000000&limit=100&apikey=demo';
-    const response = await fetch(url);
-    const data = await response.json();
+    let data;
+    try {
+      const response = await fetch(url);
+      data = await response.json();
+    } catch (networkErr) {
+      const fallback = await fetch('data/top_companies.json');
+      data = await fallback.json();
+    }
     const top = data
       .filter(c => c.marketCap && c.pe && c.pe > 0 && c.pe < 25)
       .sort((a, b) => b.marketCap - a.marketCap)
@@ -44,8 +50,14 @@ async function fetchDividendCompanies() {
     // Retrieve dividend-paying stocks and rank by yield with positive growth
     const url =
       'https://financialmodelingprep.com/api/v3/stock-screener?dividendMoreThan=0&limit=100&apikey=demo';
-    const response = await fetch(url);
-    const data = await response.json();
+    let data;
+    try {
+      const response = await fetch(url);
+      data = await response.json();
+    } catch (networkErr) {
+      const fallback = await fetch('data/dividend_companies.json');
+      data = await fallback.json();
+    }
     const top = data
       .filter(
         c =>

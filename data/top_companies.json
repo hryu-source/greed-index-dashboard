@@ -1,0 +1,12 @@
+[
+  {"name": "Apple Inc.", "symbol": "AAPL", "marketCap": 2890000000000, "pe": 22.5},
+  {"name": "Microsoft Corp.", "symbol": "MSFT", "marketCap": 2400000000000, "pe": 24.0},
+  {"name": "Alphabet Inc.", "symbol": "GOOGL", "marketCap": 1700000000000, "pe": 23.2},
+  {"name": "Amazon.com Inc.", "symbol": "AMZN", "marketCap": 1600000000000, "pe": 24.9},
+  {"name": "NVIDIA Corp.", "symbol": "NVDA", "marketCap": 1200000000000, "pe": 21.1},
+  {"name": "Meta Platforms", "symbol": "META", "marketCap": 900000000000, "pe": 18.7},
+  {"name": "Tesla Inc.", "symbol": "TSLA", "marketCap": 800000000000, "pe": 19.4},
+  {"name": "Berkshire Hathaway", "symbol": "BRK.A", "marketCap": 700000000000, "pe": 20.0},
+  {"name": "Tencent Holdings", "symbol": "TCEHY", "marketCap": 500000000000, "pe": 18.5},
+  {"name": "JPMorgan Chase & Co.", "symbol": "JPM", "marketCap": 400000000000, "pe": 9.0}
+]

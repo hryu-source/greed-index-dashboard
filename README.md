@@ -6,3 +6,4 @@ Company data is retrieved in real time from the [Financial Modeling Prep](https:
 
 ## Usage
 Open `index.html` in a web browser. The page fetches real-time data from public APIs.
+If the APIs are unreachable, the tables fall back to sample data located in the `data/` directory so the dashboard remains usable offline.
