@@ -1,0 +1,12 @@
+[
+  {"name": "Coca-Cola Co.", "symbol": "KO", "dividendYield": 3.0, "changesPercentage": 2.5},
+  {"name": "PepsiCo, Inc.", "symbol": "PEP", "dividendYield": 2.5, "changesPercentage": 1.8},
+  {"name": "Johnson & Johnson", "symbol": "JNJ", "dividendYield": 2.8, "changesPercentage": 1.2},
+  {"name": "Procter & Gamble", "symbol": "PG", "dividendYield": 2.4, "changesPercentage": 3.1},
+  {"name": "IBM", "symbol": "IBM", "dividendYield": 4.5, "changesPercentage": 2.0},
+  {"name": "McDonald's", "symbol": "MCD", "dividendYield": 2.1, "changesPercentage": 4.0},
+  {"name": "Chevron Corporation", "symbol": "CVX", "dividendYield": 3.8, "changesPercentage": 1.5},
+  {"name": "Pfizer Inc.", "symbol": "PFE", "dividendYield": 4.2, "changesPercentage": 1.7},
+  {"name": "Intel Corporation", "symbol": "INTC", "dividendYield": 3.2, "changesPercentage": 2.3},
+  {"name": "Cisco Systems", "symbol": "CSCO", "dividendYield": 3.0, "changesPercentage": 2.8}
+]
