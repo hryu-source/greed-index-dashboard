@@ -14,12 +14,13 @@ async function fetchGreedIndex() {
 // Fetch and display top 10 companies with large market cap and low P/E
 async function fetchTopCompanies() {
   try {
-    // Grab a broad list of stocks and compute the largest market caps
-    const url = 'https://financialmodelingprep.com/api/v3/stock/list?limit=1000&apikey=demo';
+    // Use stock-screener to retrieve a manageable list of large-cap stocks
+    const url =
+      'https://financialmodelingprep.com/api/v3/stock-screener?marketCapMoreThan=100000000000&limit=100&apikey=demo';
     const response = await fetch(url);
     const data = await response.json();
     const top = data
-      .filter(c => c.marketCap && c.pe)
+      .filter(c => c.marketCap && c.pe && c.pe > 0 && c.pe < 25)
       .sort((a, b) => b.marketCap - a.marketCap)
       .slice(0, 10);
 
@@ -40,19 +41,18 @@ async function fetchTopCompanies() {
 // Fetch and display top 10 dividend-paying companies with positive price change
 async function fetchDividendCompanies() {
   try {
-    // Retrieve a broad list and calculate dividend yield for gainers
-    const url = 'https://financialmodelingprep.com/api/v3/stock/list?limit=1000&apikey=demo';
+    // Retrieve dividend-paying stocks and rank by yield with positive growth
+    const url =
+      'https://financialmodelingprep.com/api/v3/stock-screener?dividendMoreThan=0&limit=100&apikey=demo';
     const response = await fetch(url);
     const data = await response.json();
     const top = data
       .filter(
         c =>
-          c.lastDiv &&
-          c.price &&
+          c.dividendYield &&
           c.changesPercentage &&
           parseFloat(c.changesPercentage) > 0
       )
-      .map(c => ({ ...c, dividendYield: (c.lastDiv / c.price) * 100 }))
       .sort((a, b) => b.dividendYield - a.dividendYield)
       .slice(0, 10);
 
