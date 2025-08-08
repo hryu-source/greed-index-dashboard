@@ -1,7 +1,8 @@
 // Fetch and display the current fear and greed index
 async function fetchGreedIndex() {
   try {
-    const response = await fetch('https://api.alternative.me/fng/');
+    // Append query parameters to avoid CORS issues when deployed
+    const response = await fetch('https://api.alternative.me/fng/?limit=1&format=json&cors=true');
     const data = await response.json();
     const { value, value_classification } = data.data[0];
     document.getElementById('greed-score').textContent = `${value} (${value_classification})`;
