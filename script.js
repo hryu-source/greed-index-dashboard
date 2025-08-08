@@ -34,5 +34,33 @@ async function fetchTopCompanies() {
   }
 }
 
+// Fetch and display top 10 dividend-paying companies with positive price change
+async function fetchDividendCompanies() {
+  try {
+    // Fetch dividend stocks with positive intraday growth
+    const url =
+      'https://financialmodelingprep.com/api/v3/stock-screener?dividendYieldMoreThan=1&changeMoreThan=0&limit=100&apikey=demo';
+    const response = await fetch(url);
+    const data = await response.json();
+    const top = data
+      .sort((a, b) => parseFloat(b.changesPercentage) - parseFloat(a.changesPercentage))
+      .slice(0, 10);
+
+    const table = document.getElementById('dividend-table');
+    table.innerHTML = '';
+    top.forEach(c => {
+      const dividend = c.dividendYield ? c.dividendYield.toFixed(2) : 'N/A';
+      const change = c.changesPercentage
+        ? parseFloat(c.changesPercentage).toFixed(2)
+        : 'N/A';
+      const row = `<tr><td>${c.companyName}</td><td>${c.symbol}</td><td>${dividend}</td><td>${change}</td></tr>`;
+      table.innerHTML += row;
+    });
+  } catch (err) {
+    document.getElementById('dividend-table').innerHTML = '<tr><td colspan="4">Error fetching data</td></tr>';
+  }
+}
+
 fetchGreedIndex();
 fetchTopCompanies();
+fetchDividendCompanies();
