@@ -1,38 +1,33 @@
-// Static Greed Index (replace with API later)
-// document.getElementById("greed-score").textContent = "75 (Extreme Greed)";
-
-// Static company data
-const companies = [
-  { name: "Abbott Laboratories", ticker: "ABT", pe: 16 },
-  { name: "Merck & Co", ticker: "MRK", pe: 11.64 },
-  { name: "HSBC Holdings", ticker: "HSBC", pe: 6.41 },
-  { name: "AstraZeneca", ticker: "AZN", pe: 6.91 },
-  { name: "Adobe", ticker: "ADBE", pe: 23.42 },
-  { name: "Applied Materials", ticker: "AMAT", pe: 23.17 },
-  { name: "Sanofi", ticker: "SNY", pe: 9.94 },
-  { name: "Lockheed Martin", ticker: "LMT", pe: 20.04 },
-  { name: "General Dynamics", ticker: "GD", pe: 20.75 },
-  { name: "CVS Health", ticker: "CVS", pe: 14.79 },
-];
-
-const table = document.getElementById("company-table");
-companies.forEach(c => {
-  const row = `<tr><td>${c.name}</td><td>${c.ticker}</td><td>${c.pe}</td></tr>`;
-  table.innerHTML += row;
-});
-
-
+// Fetch and display the current fear and greed index
 async function fetchGreedIndex() {
-  const response = await fetch("https://fear-and-greed-index.p.rapidapi.com/v1/fgi", {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "x-rapidapi-key: ea053d13c0msh0a8e44046cd0debp11f2f1jsnc5cd5e77bbb4",
-      "X-RapidAPI-Host": "fear-and-greed-index.p.rapidapi.com"
-    }
-  });
+  try {
+    const response = await fetch('https://api.alternative.me/fng/');
+    const data = await response.json();
+    const { value, value_classification } = data.data[0];
+    document.getElementById('greed-score').textContent = `${value} (${value_classification})`;
+  } catch (err) {
+    document.getElementById('greed-score').textContent = 'Error fetching data';
+  }
+}
 
-  const data = await response.json();  
-  document.getElementById("greed-score").textContent = `${data.fgi.now.value} (${data.fgi.now.valueText})`;
+// Fetch and display top 10 companies with large market cap and low P/E
+async function fetchTopCompanies() {
+  try {
+    const response = await fetch('https://financialmodelingprep.com/api/v3/stock-screener?marketCapMoreThan=100000000000&peLessThan=20&limit=100&apikey=demo');
+    const data = await response.json();
+    const top = data.sort((a, b) => b.marketCap - a.marketCap).slice(0, 10);
+
+    const table = document.getElementById('company-table');
+    top.forEach(c => {
+      const marketCapB = (c.marketCap / 1e9).toFixed(2);
+      const pe = c.pe ? c.pe.toFixed(2) : 'N/A';
+      const row = `<tr><td>${c.companyName}</td><td>${c.symbol}</td><td>${marketCapB}</td><td>${pe}</td></tr>`;
+      table.innerHTML += row;
+    });
+  } catch (err) {
+    document.getElementById('company-table').innerHTML = '<tr><td colspan="4">Error fetching data</td></tr>';
+  }
 }
 
 fetchGreedIndex();
+fetchTopCompanies();
