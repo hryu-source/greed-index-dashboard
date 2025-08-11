@@ -1,3 +1,14 @@
+// Retrieve API key from query string, defaulting to demo
+const apiKey = new URLSearchParams(window.location.search).get('apikey') || 'demo';
+
+function formatMarketCap(value) {
+  if (!value && value !== 0) return 'N/A';
+  if (value >= 1e12) {
+    return (value / 1e12).toFixed(2) + 'T';
+  }
+  return (value / 1e9).toFixed(2) + 'B';
+}
+
 // Fetch and display the current fear and greed index
 async function fetchGreedIndex() {
   try {
@@ -16,7 +27,7 @@ async function fetchTopCompanies() {
   try {
     // Use stock-screener to retrieve a manageable list of large-cap stocks
     const url =
-      'https://financialmodelingprep.com/api/v3/stock-screener?marketCapMoreThan=100000000000&limit=100&apikey=demo';
+      `https://financialmodelingprep.com/api/v3/stock-screener?marketCapMoreThan=100000000000&limit=100&apikey=${apiKey}`;
     let data;
     try {
       const response = await fetch(url);
@@ -39,9 +50,9 @@ async function fetchTopCompanies() {
     const table = document.getElementById('company-table');
     table.innerHTML = '';
     top.forEach(c => {
-      const marketCapB = (c.marketCap / 1e9).toFixed(2);
+      const marketCap = formatMarketCap(c.marketCap);
       const pe = c.pe ? c.pe.toFixed(2) : 'N/A';
-      const row = `<tr><td>${c.name}</td><td>${c.symbol}</td><td>${marketCapB}</td><td>${pe}</td></tr>`;
+      const row = `<tr><td>${c.name}</td><td>${c.symbol}</td><td>${marketCap}</td><td>${pe}</td></tr>`;
       table.innerHTML += row;
     });
   } catch (err) {
@@ -55,7 +66,7 @@ async function fetchDividendCompanies() {
   try {
     // Retrieve dividend-paying stocks and rank by yield with positive growth
     const url =
-      'https://financialmodelingprep.com/api/v3/stock-screener?dividendMoreThan=0&limit=100&apikey=demo';
+      `https://financialmodelingprep.com/api/v3/stock-screener?dividendMoreThan=0&limit=100&apikey=${apiKey}`;
     let data;
     try {
       const response = await fetch(url);
